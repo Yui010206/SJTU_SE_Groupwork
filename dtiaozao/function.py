@@ -7,7 +7,7 @@ def mk_md5(s):
     import hashlib
     m = hashlib.md5()
     # m.update(('%s'%s).encode('utf-8'))  #if not encoded with utf-8
-    m.update
+    m.update(s)
     return m.hexdigest()
 
 def warp_data(data):
