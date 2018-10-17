@@ -1,10 +1,12 @@
 #!/usr/bin/env python
 #encoding: utf-8
 
+import os
+
 def mk_md5(s):
     import hashlib
     m = hashlib.md5()
-    m.update(s)
+    m.update(('%s'%s).encode('utf-8'))
     return m.hexdigest()
 
 def warp_data(data):

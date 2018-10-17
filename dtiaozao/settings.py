@@ -72,7 +72,7 @@ DATABASES = {
         'ENGINE': 'django.db.backends.mysql',
         'NAME': 'tiaozao',
         'USER': 'root',
-        'PASSWORD': '123456',
+        'PASSWORD': '123',
         'HOST': 'localhost',
         'PORT': '3306',
     }
@@ -83,7 +83,7 @@ DATABASES = {
 
 LANGUAGE_CODE = 'en-us'
 
-TIME_ZONE = 'Asia/Shanghai'
+TIME_ZONE = 'UTC'
 
 USE_I18N = True
 
