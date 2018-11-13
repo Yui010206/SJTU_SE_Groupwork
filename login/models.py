@@ -11,7 +11,7 @@ from __future__ import unicode_literals
 
 from django.db import models
 
-
+'''
 class AuthGroup(models.Model):
     id = models.AutoField(primary_key=True)  # AutoField?
     name = models.CharField(unique=True, max_length=80)
@@ -117,7 +117,7 @@ class DjangoSession(models.Model):
     class Meta:
         db_table = 'django_session'
 
-
+''' #change
 #商品表
 class GoodsissueGoods(models.Model):
     id = models.AutoField(primary_key=True)  # AutoField?
@@ -128,6 +128,7 @@ class GoodsissueGoods(models.Model):
     introduction = models.CharField(max_length=255, blank=True)
     price = models.IntegerField(blank=True, null=True)
     imagefile = models.CharField(max_length=255, blank=True)
+    status = models.IntegerField(blank=True,default=1)
 
     class Meta:
         db_table = 'goodsissue_goods'

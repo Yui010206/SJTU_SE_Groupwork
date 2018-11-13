@@ -104,5 +104,9 @@ def saleHis(req):
 
 #售出消息接收模块
 def message(req):
+    if not req.session.get('islogin'):
+        msg = 'Please Login'
+        return render_to_response('error_msg.html',locals())
+    if req.method == 'GET':
+        uid = req.session['user_info']['uid']
     return render_to_response('working.html',locals())
-

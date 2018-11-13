@@ -8,7 +8,6 @@ def user_register(date):
     condition = fun.warp_data(date)
 
     #change start
-
     if LoginUser.objects.filter(email=condition['email']):
     	return -2
     if LoginUser.objects.filter(name=condition['name']):

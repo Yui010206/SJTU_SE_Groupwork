@@ -22,6 +22,9 @@ def get_goods_detail(data):
 #点击购买模块处理
 def purchase(data, buyer_id):
     condition = fun.warp_data(data)
+    goods = GoodsissueGoods.objects.get(id = condition['goods_id']) #change
+    goods.status = 0                                                #change
+    goods.save()                                                    #change
     tradeDate = fun.now()
     condition['buyer_id'] = buyer_id
     u = GoodsissueSaler(**condition)
