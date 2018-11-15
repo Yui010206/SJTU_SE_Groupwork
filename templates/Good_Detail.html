@@ -1,0 +1,20 @@
+{% extends "Base.html" %}
+
+{% block nav %}
+
+<p><a href="http://127.0.0.1:8000/">返回首页</a></p>
+<strong>商品详情</strong>
+<br><br><br><br>
+
+{% endblock %}
+
+{% block body %}
+<img src="{{good.photo.url}}" width = 300>
+<p>{{good.title}}</p>
+<p>¥{{good.price}}</p>
+<p>卖家：{{good.saler_id}}</p>
+<p>{{good.detail}}</p>
+<p>{{good.created}}</p>
+<p><a href="http://127.0.0.1:8000/trade/#/">确认购买</a></p>
+
+{% endblock %}

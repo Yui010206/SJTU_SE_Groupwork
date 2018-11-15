@@ -1,0 +1,22 @@
+{% extends "Base.html" %}
+
+{% block nav %}
+
+<p><a href="http://127.0.0.1:8000/">返回首页</a></p>
+<p>#这里可以加上搜索栏</p>
+<br><br><br><br>
+
+{% endblock %}
+
+{% block body %}
+{% for item in allgoods %}
+    <img src="{{item.photo.url}}" width="300" height="300">
+    <h2>{{item.title}}</h2>
+    <h3>￥{{item.price }}<h3>
+    <p><a href="{{item.id}}">查看详情</a></p>
+    <form method="post" action=".">
+        <input type="hidden" name="{{item.id}}" >
+    </form>
+{% endfor %}
+
+{% endblock %}

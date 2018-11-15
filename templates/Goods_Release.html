@@ -1,0 +1,35 @@
+{% extends "Base.html" %}
+
+{% block nav %}
+
+<p>发布商品</p>
+<p><a href="http://127.0.0.1:8000/">返回首页</a></p>
+
+{% endblock %}
+
+{% block body %}
+    <h2>发布商品：</h2>
+    <br>
+    <div style = "margin-left:10px">
+        <form action = "." method = "post" enctype="multipart/form-data">{% csrf_token %}
+            <div class = "row" style = "margin-top:10px;">
+                 <div class = "col-md-2 text-right"><span>标题：</span></div>        
+                 <div class="col-md-10 text-left">{{releaseform.title}}</div>   
+            </div>
+            <div class = "row" style = "margin-top:10px;">
+                    <div class = "col-md-2 text-right"><span>描述：</span></div>        
+                    <div class="col-md-10 text-left">{{releaseform.detail}}</div>   
+            </div>
+            <div class = "row" style = "margin-top:10px;">
+                    <div class = "col-md-2 text-right"><span>价格：</span></div>        
+                    <div class="col-md-10 text-left">{{releaseform.price}}</div>   
+            </div>    
+            <div class = "row" style = "margin-top:10px;">
+                <div class = "col-md-2 text-right"><span>图片：</span></div>        
+                <div class="col-md-10 text-left">{{releaseform.photo}}</div>   
+        </div>
+            
+            <input type="submit" value="发 布！">
+        </form>
+    </div>
+{% endblock %}
