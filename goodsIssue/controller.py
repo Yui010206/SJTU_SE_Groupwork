@@ -8,13 +8,14 @@ from dtiaozao import function as fun
 def get_goods(uid):
     #扫描商品表
     owner_id = LoginUser.objects.get(id=uid)
-    u = GoodsissueGoods.objects.filter(owner_id=owner_id) #change
+    u = GoodsissueGoods.objects.filter(owner_id=owner_id)
     return u
 
 #商品下架处理
 def del_goods(data):
+    print data
     goods_id = fun.warp_data(data)['id']
-    p = GoodsissueGoods.objects.get(id=goods_id) #change
+    p = GoodsissueGoods.objects.get(id=goods_id)
     if p:
         p.delete()
     else:
@@ -23,6 +24,7 @@ def del_goods(data):
 
 #商品信息发布处理
 def store_goods(data,extends):
+    print data
     condition = fun.warp_data(data)
     issueDate = fun.now()
     #定义存储商品发布者信息的字典
@@ -31,6 +33,7 @@ def store_goods(data,extends):
     #存入商品发布者的ID
     owner_id = LoginUser.objects.get(id=extends['uid'])
     condition['owner_id'] = extends['uid']
+    condition['status'] = 1
     issuer['uid'] = owner_id
     #存入图片名
     if extends['imgName']:
@@ -65,5 +68,3 @@ def store_goods(data,extends):
         return 2
     else:
         return -2
-
-

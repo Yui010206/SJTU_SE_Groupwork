@@ -11,7 +11,8 @@ def login(req):
         return render_to_response('error_msg.html', locals())
     else:
         data = req.POST
-        rt = controller.user_login(data) # change start
+        rt = controller.user_login(data) 
+        #change start
         if rt == -1:
             msg = '账号或密码错误！'
             return render_to_response('error_msg.html', locals())
