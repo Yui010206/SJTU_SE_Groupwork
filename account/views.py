@@ -8,11 +8,10 @@ def login(request):
     if request.method == 'GET':
        return render(request,"Account_Login.html")
     else:
-        data = request.POST
+        data = request.POST 
         rt = form.user_login(data)
         if rt == -1:
             msg = '账号或密码错误！'
-            return render(request,'error_msg.html')
         elif rt:
             #登录成功后，将用户信息添加到session中
             request.session['islogin'] = True
@@ -22,8 +21,9 @@ def login(request):
             user_info['email'] = rt.email
             user_info['phone'] = rt.phone
             request.session['user_info'] = user_info
-            return HttpResponseRedirect('/')
-
+        else:
+            msg = '账号或密码错误！'
+        return render(request,'error_msg.html',locals())
 
 #登出
 def logout(request):
