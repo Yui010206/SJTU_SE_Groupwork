@@ -1,45 +1,70 @@
 #encoding: utf-8
-from django.shortcuts import render_to_response
-from django.http import HttpResponseRedirect
-from django.template import RequestContext
-import controller
+from django.shortcuts import render
+from form import getGoods
 from dtiaozao import function as fun
+from goodsIssue.models import GoodsReleased
+from account.models import LoginUser
 
 
-#商品浏览模块
-def goodsList(req):
-    goods_info = controller.get_goods_info()
-    return render_to_response('goods_list.html', locals(), context_instance=RequestContext(req))
 
-
-#商品详情页模块
-def goodsDetail(req):
-    if not req.session.get('islogin'):
+#商品购买模块
+def goodsPurchase(request):
+    if not request.session.get('islogin'):
         msg = '你还未登陆，请先登陆！'
-        return render_to_response('error_msg.html', locals())
-    if req.method == 'GET':
-        data = req.GET
-        goods_detail = controller.get_goods_detail(data)
-        return render_to_response('goods_detail.html', locals(), context_instance=RequestContext(req))
-    if req.method == 'POST':
-        data = req.POST
-        buyer_id = req.session['user_info']['uid']
-        rt = controller.purchase(data, buyer_id)
-        if rt == 1:
+        return render(request,'error_msg.html', locals())
+
+    if request.method == 'POST':
+        data = request.POST
+        buyer_id = request.session['user_info']['uid']
+        condition = GoodsReleased.objects.get(id=data['good_id'])
+        if condition.status ==1:
+            condition.buyer=buyer_id
+            condition.status=0
+            condition.save()
             msg = '购买成功，请返回主页！'
         else:
-            msg = '购买失败，请联系管理员！！'
-        return render_to_response('error_msg.html', locals(), context_instance=RequestContext(req))
+            msg = '购买失败，已被人购买！'
+    
+        return render(request,'error_msg.html', locals())
 
 
 #购买记录模块
-def buyHis(req):
-    if not req.session.get('islogin'):
-        msg = '你还没登录，先登录吧....'
-        return render_to_response('error_msg.html', locals(), context_instance=RequestContext(req))
-    buyer_id = req.session['user_info']['uid']
-    id_group = []
-    #将购买者id装入列表后传入controller，是为了迎合controller的处理
-    id_group.append((buyer_id, None))
-    result = controller.trade_his(id_group)
-    return render_to_response('buy_history.html', locals(), context_instance=RequestContext(req))
+def buyHistory(request):
+    if not request.session.get('islogin'):
+        msg = '你还没登录'
+        return render(request,'error_msg.html',locals())
+    #获取买家id
+    buyer_id = request.session['user_info']['uid']
+    bought_goods = {}
+    bought_goods = getGoods(buyer_id,0)
+
+    return render(request,'Good_BuyHistory.html',locals())
+
+#购买记录中单品信息
+def detail(request,good_id):
+    if not request.session.get('islogin'):
+        msg = '你还未登陆'
+        return render(request,'error_msg.html',locals())
+    else:
+        info = set()
+        good = GoodsReleased.objects.get(id = good_id)
+        buyer_name = request.session['user_info']['name']
+        return render(request,"Good_BoughtDetail.html",locals())  
+
+def saleHistory(request):
+    if not request.session.get('islogin'):
+        msg = 'Error'
+        return render(request,'error_msg.html', locals())
+    saler_id = request.session['user_info']['uid']
+    all_goods = getGoods(saler_id,1)
+    on_sale = []
+    sold = []
+    wait_ans = []
+    for goods in all_goods:
+        if goods.get('status') == 0:
+            wait_ans.append(goods)
+        elif goods.get('status') == 1:
+            on_sale.append(goods)
+        else :
+            sold.append(goods)
+    return render(request,'Good_Sale.html',locals())
