@@ -41,6 +41,10 @@
                     <strong>
                         <a href="/trade/detail/{{item.id}}">{{item.title}}</a>
                     </strong>
+                    <form method ="post" action = "/trade/confirmation">
+                        <input type="hidden" name="item_id" value="{{ item.id }}">
+                        <button type="submit" class="btn btn-success" > 确认完成交易 </button>
+                    </form>
                 </div>
             </div>
             <!-- 右侧图片，信息 -->

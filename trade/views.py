@@ -1,7 +1,6 @@
 #encoding: utf-8
-from django.shortcuts import render
+from django.shortcuts import render,redirect
 from form import getGoods
-from dtiaozao import function as fun
 from goodsIssue.models import GoodsReleased
 from account.models import LoginUser
 
@@ -68,3 +67,16 @@ def saleHistory(request):
         else :
             sold.append(goods)
     return render(request,'Good_Sale.html',locals())
+
+
+def confirmation(request):
+    if not request.session.get('islogin'):
+        msg = 'Error'
+        return render(request,'error_msg.html', locals())
+    if request.method == "POST":
+        data = request.POST
+        good = GoodsReleased.objects.get(id = data['item_id'])
+        good.status = 2
+        good.save()
+        return redirect('../trade/saleHistory')
+        

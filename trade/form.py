@@ -11,6 +11,7 @@ def getGoods(user_id,p):
         u = GoodsReleased.objects.filter(saler=user_id)
         if u:
             for re in u:
+                info['id'] = re.id
                 info['title'] = re.title
                 info['detail'] = re.detail
                 info['photo'] = re.photo
@@ -33,7 +34,6 @@ def getGoods(user_id,p):
                 info = {}
         else:
             return []
-    print result
     return result
 
 
