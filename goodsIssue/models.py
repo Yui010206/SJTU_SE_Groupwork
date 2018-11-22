@@ -1,40 +1,27 @@
 #encoding: utf-8
 from __future__ import unicode_literals
 from django.db import models
-from login.models import LoginUser
-from django.contrib.auth.models import User
+from django.utils import timezone
+from account.models import LoginUser
 
-#商品表
-class GoodsissueGoods(models.Model):
-    id = models.AutoField(primary_key=True)  # AutoField?
-    owner = models.ForeignKey('login.LoginUser', blank=True, null=True)
-    name = models.CharField(max_length=255, blank=True)
-    introduction = models.CharField(max_length=255, blank=True)
-    price = models.IntegerField(blank=True, null=True)
-    imagefile = models.CharField(max_length=255, blank=True)
-
-    class Meta:
-        db_table = 'goodsissue_goods'
-        
-
-#商品发布表
-class GoodsissueIssuer(models.Model):
-    id = models.AutoField(primary_key=True)  # AutoField?
-    uid = models.ForeignKey('login.LoginUser', db_column='uid', blank=True, null=True)
-    goods = models.ForeignKey(GoodsissueGoods, blank=True, null=True)
-    issuedate = models.DateTimeField(db_column='issueDate', blank=True, null=True)  # Field name made lowercase.
+class GoodsReleased(models.Model):
+    saler =  models.ForeignKey(LoginUser,related_name = "goodsreleased")
+    buyer = models.CharField(max_length = 100)  #记录买家
+    title = models.CharField(max_length = 200)  # title是描述性的一句话，在商品列表中展示
+    photo = models.ImageField(blank = False,upload_to = '.')
+    photo2 = models.ImageField(blank = True,upload_to = '.')
+    detail = models.TextField()                 # datail详细描述产品的各项参数，由卖家随意编写
+    price = models.IntegerField(max_length = 100)
+    status = models.IntegerField(default = 1)   #status表示物品的交易状态，1表示可交易，0表示交易中,2表示交易完成
+    created = models.DateTimeField(default = timezone.now)  #发布信息时间
+    updated = models.DateTimeField(auto_now=True)           #更新信息时间
 
     class Meta:
-        db_table = 'goodsissue_issuer'
+        ordering = ("title",)
+        index_together = (('id','status'),)
+
+    def __str__(self):
+        return self.title
 
 
-#商品销售表
-class GoodsissueSaler(models.Model):
-    id = models.AutoField(primary_key=True)  # AutoField?
-    buyer = models.ForeignKey('login.LoginUser', blank=True, null=True)
-    goods_id = models.IntegerField(blank=True, null=True)
-    tradedate = models.DateTimeField(db_column='tradeDate', blank=True, null=True)  # Field name made lowercase.
-
-    class Meta:
-        db_table = 'goodsissue_saler'
 
