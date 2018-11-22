@@ -39,9 +39,9 @@ INSTALLED_APPS = (
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
-    'login',
     'goodsIssue',
     'trade',
+    'account',
 )
 
 MIDDLEWARE_CLASSES = (
@@ -57,6 +57,7 @@ MIDDLEWARE_CLASSES = (
 TEMPLATE_CONTEXT_PROCESSORS = (
     'django.contrib.auth.context_processors.auth',
     'django.core.context_processors.request',
+    'django.core.context_processors.media'
 )
 
 ROOT_URLCONF = 'dtiaozao.urls'
@@ -73,16 +74,16 @@ DATABASES = {
         'NAME': 'tiaozao',
         'USER': 'root',
         'PASSWORD': '123456',
-        'HOST': 'localhost',
-        'PORT': '3306',
     }
 }
 
 # Internationalization
 # https://docs.djangoproject.com/en/1.7/topics/i18n/
 
-LANGUAGE_CODE = 'en-us'
+# LANGUAGE_CODE = 'en-us'
+LANGUAGE_CODE = 'zh-hans'
 
+# TIME_ZONE = 'UTC'
 TIME_ZONE = 'Asia/Shanghai'
 
 USE_I18N = True
@@ -99,4 +100,8 @@ STATIC_URL = '/static/'
 
 STATICFILES_DIRS = (
     os.path.join(BASE_DIR, "static"),
+
 )
+
+MEDIA_ROOT = os.path.join(BASE_DIR, 'static/media').replace('\\', '/') 
+MEDIA_URL = '/static/media/'

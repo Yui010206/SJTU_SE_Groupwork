@@ -1,28 +1,33 @@
 #encoding: utf-8
-__author__ = 'SE_Group'
 
-from django.shortcuts import render_to_response
-from django.template import RequestContext
-from login.models import LoginUser
-from goodsIssue.models import GoodsissueGoods, GoodsissueIssuer, GoodsissueSaler
+from django.shortcuts import render_to_response,render
+#from django.template import requestuestContext
+from account.models import LoginUser
+from goodsIssue.models import GoodsReleased
 from dtiaozao import function as fun
 
-#主页
-def index(req):
-    #获得数据库中的数据，全表扫描
-    users = LoginUser.objects.all()
-    goodses = GoodsissueGoods.objects.all()
-    issuers = GoodsissueIssuer.objects.all()
-    salers = GoodsissueSaler.objects.all()
-    return render_to_response('index.html', locals(), context_instance=RequestContext(req))
+#主页展示
+def index(request):
+    allgoods = GoodsReleased.objects.all()
+    goodsorder = []
+    showgoods = set()
+    for item in allgoods:
+        goodsorder += [item.id]
+    goodsorder.sort()
+    for i in range(1,5):
+        try:
+            showgoods.add(GoodsReleased.objects.get(id = goodsorder[-1*i]))
+        except:break
+    return render(request,'Base_Index.html',{"showgoods":showgoods},)
+
 
 
 #搜索引擎模块
-def search(req):
-    if req.method == 'GET':
+def search(request):
+    if request.method == 'GET':
         msg = '非法访问！！！'
         return render_to_response('error_msg.html', locals())
-    data = fun.warp_data(req.POST)
+    data = fun.warp_data(request.POST)
     goods_name = data['keywords']
-    goods_info = GoodsissueGoods.objects.filter(name__contains=goods_name)
-    return render_to_response('goods_list.html', locals(), context_instance=RequestContext(req))
+    # goods_info = GoodsissueGoods.objects.filter(name__contains=goods_name)
+    return render_to_response('goods_list.html', locals(), context_instance=requestuestContext(request))
