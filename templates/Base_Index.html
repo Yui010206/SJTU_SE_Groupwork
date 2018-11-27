@@ -1,0 +1,120 @@
+{% extends "Base.html" %}
+
+{% block title %}首页{% endblock %}
+
+{% block body %}
+<!--carousel picture-->
+
+    <div id="ad-carousel" class="carousel slide" data-ride="carousel">
+        <ol class="carousel-indicators">
+            <li data-target="#ad-carousel" data-slide-to="0" class="active"></li>
+            <li data-target="#ad-carousel" data-slide-to="1"></li>
+            <li data-target="#ad-carousel" data-slide-to="2"></li>
+
+        </ol>
+        <div class="carousel-inner">
+            <div class="item active" >
+                <img src="../static/images/ic_p5.jpg" alt="0 slide">
+
+                <div class="container">
+                    <div class="carousel-caption"
+                        style="position: absolute; top: 250px;width:250px;margin-left:auto;margin-right:auto;">
+                        <h1>SJTU二手交易</h1>
+                        <p>宋子逸奶茶还没买</p>
+                    </div>
+                </div>
+
+            </div>
+            <div class="item">
+                <img src="../static/images/ic_p6.jpg" alt="1 slide">
+
+                <div class="container">
+                    <div class="carousel-caption"
+                        style="position: absolute; top: 250px;width:250px;margin-left:auto;margin-right:auto;">
+                        <h1>SJTU</h1>
+                    </div>
+                </div>
+
+            </div>
+
+            <div class="item">
+                <img src="../static/images/ic_p7.jpg" alt="2 slide">
+
+                <div class="container">
+                    <div class="carousel-caption"
+                        style="position: absolute; top: 250px;width:250px;margin-left:auto;margin-right:auto;">
+                        <h1>SJTU</h1>
+                    </div>
+                </div>
+
+            </div>
+
+
+        </div>
+        <a class="left carousel-control" href="#ad-carousel" data-slide="prev"><span
+            class="glyphicon glyphicon-chevron-left"></span></a> <a
+            class="right carousel-control" href="#ad-carousel" data-slide="next"><span
+            class="glyphicon glyphicon-chevron-right"></span></a>
+        <div style="position: absolute; left: 100px; top: 100px;"></div>
+    </div>
+  <!--功能板块-->
+  <div class="row div_function">
+        <div class="col-xs-4">
+            <div class="panel panel-default" id="pFunc1">
+                <div class="panel-body">
+                    <a href="/goodsIssue/market/">店铺</a>
+                    <img class="iv_function" src="../static/images/ic_store.svg">
+                </div>
+            </div>
+        </div>
+        <div class="col-xs-4">
+            <div class="panel panel-default"  id="pFunc2">
+                <div class="panel-body">
+                    <strong>广场</strong>
+                    <img class="iv_function" src="../static/images/ic_remeber.svg">
+                </div>
+            </div>
+        </div>
+        <div class="col-xs-4">
+            <div class="panel panel-default"  id="pFunc3">
+                <div class="panel-body">
+                    <strong>私人角落</strong>
+                    <img class="iv_function" src="../static/images/ic_personal.svg">
+                </div>
+            </div>
+        </div>
+  </div>
+    <!--jq plugin--> 
+    <!-- 技术日记 -->
+    <div class="container div_divider">
+        <!-- 分割线 -->
+        <hr class="hr_0.5"><hr class="hr_3">
+        <div class="row">
+            <!-- 文章列表 -->
+            <div class="col-xs-12">
+                <div class="list-group div_article">
+                    <!-- 子头栏 -->
+                    <a href="#" class="list-group-item active item_article_first">
+                        <h3 class="list-group-item-heading">
+                            新品上架
+                        </h3>
+                    </a>
+                    <!-- 文章列表 -->
+                    {% for item in showgoods %}
+                    <div class="list-group-item item_article">
+                        <div class="row">
+                            <div class="div_center col-xs-9">
+                                <div class="list-group-item-heading div_article_title">
+                                    <strong>
+                                        <a href="/goodsIssue/market/{{item.id}}">{{item.title}}</a>
+                                    </strong>
+                                </div>
+                            </div>
+                            <!-- 右侧图片，信息 -->
+                            <div class="col-xs-3 div_right_info">
+                                    <a href="/goodsIssue/market/{{item.id}}"><img class="iv_article img-rounded" src="{{item.photo.url}}" ></a>
+                            </div>
+                        </div>
+                    </div>
+                    {%endfor%}    
+{% endblock %}
