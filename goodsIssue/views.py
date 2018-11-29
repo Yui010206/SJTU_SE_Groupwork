@@ -1,16 +1,15 @@
 #encoding: utf-8
-from django.shortcuts import render_to_response,render
-from django.http import HttpResponseRedirect,HttpResponse
-from form import GoodsReleaseForm
-from models import GoodsReleased
+from django.shortcuts import render
+from models import GoodsReleased,GoodsReleaseForm
 from account.models import LoginUser
+from dtiaozao import function as fun
 import PIL
 
-# 商品发布
+#新品发布
 def release(request):
     if not request.session.get('islogin'):
         msg = '你还未登陆，请先登陆！'
-        return render_to_response('error_msg.html', locals())
+        return render(request,'error_msg.html', locals())
     if request.method == "GET":
         releaseform = GoodsReleaseForm()
         return render(request,"Goods_Release.html",{"releaseform":releaseform})
@@ -21,29 +20,40 @@ def release(request):
             uid = request.session['user_info']['uid'] # 获取用户ID
             new_good = releaseform.save(commit = False)
             new_good.saler_id = uid
-            new_good.satus = 1
+            new_good.status = 1
             new_good.save()
-            return HttpResponseRedirect('/goodsIssue/release')
+            msg = "商品发布成功！"
+            return render(request,"error_msg.html",locals())
         else:
-            return HttpResponse("Invalid Input")
+            msg = "商品发布失败！"
+            return render(request,"error_msg.html",locals())
 
 
-#浏览市场模块
+#浏览市场
 def market(request):
-        allgoods = GoodsReleased.objects.all()
+        allgoods = GoodsReleased.objects.filter(status=1)
         return render(request, "Good_Market.html",{"allgoods":allgoods},)
-#请求购买
+        
+#查看详情
 def detail(request,good_id):
     if not request.session.get('islogin'):
-            return HttpResponse("你还未登陆，请先登陆！")
+        msg = "你还未登陆，请先登陆！"
+        return render(request,"error_msg.html",locals())
     else:
         info = set()
         good = GoodsReleased.objects.get(id = good_id)
-        return render(request,"Good_Detail.html",{"good":good},)    
+        return render(request,"Good_Detail.html",{"good":good},)
 
-#购买记录
-def purchaseHistory(request):
-    if not request.session.get('islogin'):
-        msg = '你还未登陆，请先登陆！'
-        return render_to_response('error_msg.html', locals())
-    return render(request, "Good_BuyHis.html")
+
+#搜索模块
+def search(request):
+    if request.method == 'GET':
+        return render(request,'search_test.html')
+    else:
+        data = fun.warp_data(request.POST)
+        goods_name = data['keywords']
+        goods_info = GoodsReleased.objects.filter(title__contains = goods_name)
+        return render(request,'Good_Searched.html',locals(),) 
+
+
+
