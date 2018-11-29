@@ -1,35 +1,40 @@
 {% extends "Base.html" %}
-
-{% block nav %}
-
-<p>发布商品</p>
-<p><a href="http://127.0.0.1:8000/">返回首页</a></p>
-
-{% endblock %}
-
 {% block body %}
-    <h2>发布商品：</h2>
-    <br>
-    <div style = "margin-left:10px">
-        <form action = "." method = "post" enctype="multipart/form-data">{% csrf_token %}
-            <div class = "row" style = "margin-top:10px;">
-                 <div class = "col-md-2 text-right"><span>标题：</span></div>        
-                 <div class="col-md-10 text-left">{{releaseform.title}}</div>   
-            </div>
-            <div class = "row" style = "margin-top:10px;">
-                    <div class = "col-md-2 text-right"><span>描述：</span></div>        
-                    <div class="col-md-10 text-left">{{releaseform.detail}}</div>   
-            </div>
-            <div class = "row" style = "margin-top:10px;">
-                    <div class = "col-md-2 text-right"><span>价格：</span></div>        
-                    <div class="col-md-10 text-left">{{releaseform.price}}</div>   
-            </div>    
-            <div class = "row" style = "margin-top:10px;">
-                <div class = "col-md-2 text-right"><span>图片：</span></div>        
-                <div class="col-md-10 text-left">{{releaseform.photo}}</div>   
-        </div>
-            
+
+<div class="wrap">
+    <div class="container">
+        <h1>上架新品</h1>
+        <form action = "." method = "post" enctype="multipart/form-data">
+            <h2>&nbsp&nbsp</h2>
+            <input type="text" name="title" placeholder="标题"/>
+            <h2>&nbsp&nbsp</h2>
+            <input type="text" name="detail" placeholder="描述" />
+            <h2>&nbsp&nbsp</h2>
+            <input type="number" name="price" placeholder="价格" />
+            <h2>&nbsp&nbsp</h2>
+            <input type="file" name="photo" placeholder="图片" />  
+            <h2>&nbsp&nbsp</h2>
             <input type="submit" value="发 布！">
+
         </form>
     </div>
+    <div style="text-align:center;color:#dbdbdb">2018 &copy;Powered By Django</div>
+    <div style="text-align:center;color:#dbdbdb">
+  Email:juewangyashuabing@sjtu.edu.cn
+    </div>
+<ul>
+        <li></li>
+        <li></li>
+        <li></li>
+        <li></li>
+        <li></li>
+        <li></li>
+        <li></li>
+        <li></li>
+        <li></li>
+        <li></li>
+    </ul>
+
+</div>
+
 {% endblock %}

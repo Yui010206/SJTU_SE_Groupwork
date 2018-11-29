@@ -1,0 +1,86 @@
+<!--交易管理-->
+{% extends "Base.html" %}
+
+{% block body %}
+<div class="list-group-item item_article">
+    
+</div>
+<div>
+<center><h1>(╬￣皿￣)----------销售中----------(╬￣皿￣)=○</h1></center>
+{% for item in on_sale %}
+     <div class="list-group-item item_article">
+        <div class="row">
+            <div class="div_center col-xs-9">
+                <div class="list-group-item-heading div_article_title">
+                    <strong>
+                        <a href="/trade/detail/{{item.id}}">{{item.title}}</a>
+                    </strong>
+                </div>
+            </div>
+            <!-- 右侧图片，信息 -->
+            <div class="col-xs-3 div_right_info">
+                <a href="/trade/detail/{{item.id}}"><img class="iv_article img-rounded" src="{{item.photo.url}}" ></a>
+            </div>
+        </div>
+    </div>
+    {% endfor %}
+</div>
+
+<div>
+<center><h1>(u‿ฺu✿ฺ)----------交易中----------╰(*°▽°*)╯</h1></center>
+{% for item in wait_ans %}
+     <div class="list-group-item item_article">
+        <div class="row">
+            <div class="div_center col-xs-12">
+                <div class="list-group-item-heading div_article_title">
+                    <div>
+                        <strong>
+                        <a href="/trade/detail/{{item.id}}">{{item.title}}</a>
+                        </strong>
+                        <div style="margin-left:20px;float:right">
+                            <form method ="post" action = "/trade/confirmation">
+                                <input type="hidden" name="item_id" value="{{ item.id }}">
+                                <button type="submit" class="btn pad1">确认完成交易</button>
+                            </form>
+                        </div>
+                        <div style="margin-left:20px;float:right">
+                            <form method ="post" action = "/trade/rerelease">
+                                <input type="hidden" name="item_id" value="{{ item.id }}">
+                                <button type="submit" class="btn pad1"style="margin-left:40px" >取消交易</button>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!-- 右侧图片，信息 -->
+            <div class="col-xs-3 div_right_info">
+                <a href="/trade/detail/{{item.id}}"><img class="iv_article img-rounded" src="{{item.photo.url}}" ></a>
+            </div>
+        </div>
+    </div>
+    {% endfor %}
+</div>
+
+<div>
+<center><h1>(๑•̀ㅂ•́)و✧----------已售出----------╰(*°▽°*)╯</h1></center>
+{% for item in sold %}
+     <div class="list-group-item item_article">
+        <div class="row">
+            <div class="div_center col-xs-9">
+                <div class="list-group-item-heading div_article_title">
+                    <strong>
+                        <a href="/trade/detail/{{item.id}}">{{item.title}}</a>
+                    </strong>
+                </div>
+            </div>
+            <!-- 右侧图片，信息 -->
+            <div class="col-xs-3 div_right_info">
+                <a href="/trade/detail/{{item.id}}"><img class="iv_article img-rounded" src="{{item.photo.url}}" ></a>
+            </div>
+        </div>
+    </div>
+    {% endfor %}
+</div>
+
+
+{% endblock %}
