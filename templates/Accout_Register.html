@@ -1,7 +1,7 @@
 {% extends "Base.html"%}
 
 {% block body %}
-  <div class="wrap">
+  <div class="wrap" style="overflow:scroll">
     <div class="container">
         <h1>注册</h1>
         <form method="post" action="/account/register">
@@ -11,10 +11,11 @@
           </p>
       
           <p>密码:{{ regform.password }}
+            {% for i in errorpwd%}{{i}}{% endfor %}
           </P>
           
           <p>确认密码:{{ regform.password2 }}
-          {% for i in errorpwd%}{{i}}{% endfor %}
+          {% for i in errorpwd2%}{{i}}{% endfor %}
           </P>
           
           <p>用户名:{{ regform.name }}
@@ -29,12 +30,8 @@
           {% for i in errorid%}{{i}}{% endfor %}
           </P>
           <p>住址:{{ regform.address }}
+            {% for i in errorad%}{{i}}{% endfor %}
           </P>
-            <!--<input type="text" name="name" placeholder="用户名"/>
-            <input type="password" name="password" placeholder="密码" />
-            <input type="password" name="password2" placeholder="确认密码" />
-            <input type="int" name="phone" placeholder="手机号码"/>
-            <input type="text" name="adress" placeholder="住址" />-->
             <p>&nbsp&nbsp
             <input type="submit" value="Sign up"/>
             </p>

@@ -1,7 +1,6 @@
 <!DOCTYPE html>
 <html lang="zh-CN">
 <head>
-{% block meta %}
   <meta charset="utf-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -11,7 +10,7 @@
   <link rel="stylesheet" href="/static/default/bootstrap/css/bootstrap-theme.min.css">
   <script src="/static/default/js/jquery-1.12.4.min.js" ></script>
   <script src="/static/default/bootstrap/js/bootstrap-3.3.7.min.js" ></script>
-{% endblock %}
+{% block meta %}{% endblock %}
 <title>上海交大宿舍二手交易网站 {% block title %}{% endblock %}</title>
 </head>
 <body>
@@ -34,42 +33,29 @@
                 <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">买家入口<span class="caret"></span></a>
                 <ul class="dropdown-menu" role="menu">
                     <li><a href="/goodsIssue/market/">浏览市场</a></li>
-                    <li><a href="/trade/buyHistory">购物记录</a></li>    <!-- 未实现 --> 
+                    <li><a href="/trade/buyHistory">购物记录</a></li>    
                 </ul>
             </li>
             <li class="dropdown">
                 <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">卖家入口<span class="caret"></span></a>
                 <ul class="dropdown-menu" role="menu">
-                    <li><a href="/trade/saleHistory">交易管理</a></li>               <!-- 未实现 --> 
+                    <li><a href="/trade/saleHistory">交易管理</a></li>             
                     <li><a href="/goodsIssue/release/">上架新品</a></li>
                 </ul>
-            <!-- </li>
-            <li><a href="resouces.html">消息中心</a>
-            </li> -->
         </ul>
+
         {% if request.session.islogin %}
             <form class="nav-right" action="/account/logout">
                 <span style="color:#fff;margin-right:25px">您好：{{ request.session.user_info.name }}</span>
                 <button class="btn pad2 btn-cricle1 btn_login"sytle = "position: -absolute;">退出</button>
                 </form>
         {% else %}
-            <!--<div class="nav-right">
-                <span style="color:#fff">游客您好</span>
-            </div>
-            <div class="col-xs-4">
-                <button class="btn btn-default btn-cricle btn_login" sytle = "position: -absolute;"data-toggle="modal" data-target="#loginModal">表面登录</button>
-        
-                <a href="http://127.0.0.1:8000/account/register/" class="btn btn-default btn-cricle btn_login" >注册</a>
-                <a href="http://127.0.0.1:8000/account/login/" class="btn btn-default btn-cricle btn_login" >登录</a>
-                -->
                 <div class="nav-right">
                     <span style="color:#fff ;position:absolute">游客您好</span>
                 </div>
                 <div class="login-pad">
                     <button class="btn pad1 btn-cricle btn_login" sytle = "position: -absolute;"data-toggle="modal" data-target="#loginModal">登录</button>
-                    <!-- 临时用于注册和登录的连接 -->
                     <a href="/account/register/" class="btn pad1 btn-cricle btn_login" style="margin-right:12px">注册</a>
-                    <!--  -->
             </div>        
         {% endif %}
     </div>
@@ -106,14 +92,14 @@
         <h1>index</h1>
         {{ now }}
 {% endblock %}
-
+{% block foot %}
 <footer id="footer" >
     <div style="text-align:center">2018 &copy;Powered By Django</div>
 	<div style="text-align:center">
 	Email:juewangyashuabing@sjtu.edu.cn
     </div>
 </footer>
-
+{% endblock %}
 
 </body>
 </html>
