@@ -1,0 +1,23 @@
+<!--已购买单品-->
+
+{% extends "Base.html" %}
+
+{% block nav %}
+
+<p><a href="http://127.0.0.1:8000/">返回首页</a></p>
+<strong>商品信息</strong>
+<br><br><br><br>
+
+{% endblock %}
+
+{% block body %}
+<img src="{{good.photo.url}}" width = 300>
+<p>{{good.title}}</p>
+<p>价格：¥{{good.price}}</p>
+<p>卖家：{{buyer_name}}</p>
+<p>商品描述：{{good.detail}}</p>
+<p>商品发布时间：{{good.created}}</p>
+
+
+
+{% endblock %}
