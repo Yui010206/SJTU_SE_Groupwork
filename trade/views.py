@@ -26,7 +26,6 @@ def goodsPurchase(request):
     
         return render(request,'error_msg.html', locals())
 
-
 #购买记录模块
 def buyHistory(request):
     if not request.session.get('islogin'):
@@ -42,7 +41,7 @@ def buyHistory(request):
 #购买记录中单品信息
 def detail(request,good_id):
     if not request.session.get('islogin'):
-        msg = '你还未登陆'
+        msg = '你还没登录'
         return render(request,'error_msg.html',locals())
     else:
         info = set()
@@ -52,7 +51,7 @@ def detail(request,good_id):
 
 def saleHistory(request):
     if not request.session.get('islogin'):
-        msg = 'Error'
+        msg = '你还没登录'
         return render(request,'error_msg.html', locals())
     saler_id = request.session['user_info']['uid']
     all_goods = getGoods(saler_id,1)
@@ -68,10 +67,10 @@ def saleHistory(request):
             sold.append(goods)
     return render(request,'Good_Sale.html',locals())
 
-
+#交易成功
 def confirmation(request):
     if not request.session.get('islogin'):
-        msg = 'Error'
+        msg = '你还没登录'
         return render(request,'error_msg.html', locals())
     if request.method == "POST":
         data = request.POST
@@ -80,3 +79,14 @@ def confirmation(request):
         good.save()
         return redirect('../trade/saleHistory')
         
+#重新上架
+def rerelease(request):
+    if not request.session.get('islogin'):
+        msg = '你还没登录'
+        return render(request,'error_msg.html', locals())
+    if request.method == "POST":
+        data = request.POST
+        good = GoodsReleased.objects.get(id = data['item_id'])
+        good.status = 1
+        good.save()
+        return redirect('../trade/saleHistory')
