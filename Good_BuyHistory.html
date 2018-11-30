@@ -1,0 +1,32 @@
+{% extends "Base.html" %}
+
+{% block body %}
+<div class="list-group-item item_article">
+    
+</div>
+
+{% for item in bought_goods %}
+     <div class="list-group-item item_article">
+        <div class="row">
+            <div class="div_center col-xs-9">
+                <div class="list-group-item-heading div_article_title">
+                    <strong>
+                        {% if item.status == 0 %}
+                        <a href="/trade/detail/{{item.id}}">{{item.title}}</a><div align = "right" style="font-size:70%">交易中</div>
+                        {% endif %}
+                        {% if item.status == 2 %}
+                        <a href="/trade/detail/{{item.id}}">{{item.title}}</a><div align = "right"style="font-size:70%">交易完成</div>
+                        {% endif %}
+                    </strong>
+                </div>
+            </div>
+            <!-- 右侧图片，信息 -->
+            <div class="col-xs-3 div_right_info">
+                <a href="/trade/detail/{{item.id}}"><img class="iv_article img-rounded" src="{{item.photo.url}}" ></a>
+            </div>
+        </div>
+    </div>  
+
+{% endfor %}
+
+{% endblock %}

@@ -1,0 +1,35 @@
+{% extends "Base.html" %}
+
+{% block body %}
+<div class="wrap" style="overflow:scroll">
+    <div class="container">
+        <h1>商品详情</h1>
+        <form method = "post" action = "/trade/goodsPurchase">
+            <div align="center"><img src="{{good.photo.url}}" width = 300 border="2"></div>
+            <h2>&nbsp&nbsp</h2>
+            <center><p1>商品名：{{good.title}}</p1></center>
+            <center><p1>¥{{good.price}}</p1></center>
+            <center><p1>卖家：{{good.saler.name}}</p1></center>
+            <center><p1>卖家电话：{{good.saler.phone}}</p1></center>
+            <center><p1>详情：{{good.detail}}</p1></center>
+            <center><p1>发布时间:{{good.created}}</p1></center> 
+            <input type="hidden" name="good_id" value="{{ good.id }}">
+            <center><button type = "submit" class ="btn pad1">购买</button></center>
+        </form>
+    </div>
+
+    <ul>
+        <li></li>
+        <li></li>
+        <li></li>
+        <li></li>
+        <li></li>
+        <li></li>
+        <li></li>
+        <li></li>
+        <li></li>
+        <li></li>
+    </ul>
+</div>
+{% endblock %}
+
