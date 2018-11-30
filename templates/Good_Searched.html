@@ -1,0 +1,63 @@
+{%extends "Base.html"%}
+{% block meta %}
+    <link rel="stylesheet" type="text/css" href="/static/default/css/public.css">
+    <link rel="stylesheet" type="text/css" href="/static/default/css/proList.css">
+
+    <script src="/static/default/js/jquery-1.12.4.min.js" type="text/javascript" charset="utf-8"></script>
+    <script src="/static/default/js/public.js" type="text/javascript" charset="utf-8"></script>
+    <script src="/static/default/js/pro.js" type="text/javascript" charset="utf-8"></script>
+
+    
+{% endblock %}
+
+{% block body%}
+        <div class="banner">
+            <a href="#"><img src="/static/images/ic_p9.jpg" ></a>
+        </div>
+
+        <div class="address">
+                <div class="wrapper clearfix">
+                    <a href="#"><font size="3.5">查找：{{goods_name}}</font></a>
+           
+                   
+                </div>
+        </div>
+        <form class="form-inline" action="/goodsIssue/search/" style="margin-left:75%;margin-top:-37px" method="post">
+            <div class="form-group">
+            <label for="issueSearcher">商品搜索：</label>
+            <input type="text" class="form-control" name="keywords" id="issueSearcher" placeholder="如：羽毛球拍">
+            </div>
+            <button type="submit" class="btn btn-default">搜索</button>
+        </form>
+
+
+        <ul class="proList wrapper clearfix">
+            {% for item in goods_info %}
+            {% if item.status == 1 %}
+            <li>
+                <a href="{{item.id}}">
+                    <dl>
+                        <dt><img src="{{item.photo.url}}"></dt>
+                        <dd>{{item.title}}</dd>
+                        <dd>￥{{item.price }}</dd>
+                    </dl>
+                </a>
+            </li>
+            {% endif %}
+            {% endfor %}
+        </ul>
+        
+        
+        <!--返回顶部-->
+        <div class="gotop">
+            <a href="#" class="toptop" style="display: none;">
+            <dl>
+                <dt><img src="/static/images/gt4.png"></dt>
+                <dd>返回<br />顶部</dd>
+            </dl>
+            </a>
+        </div>
+        <div class="msk"></div>
+{% endblock %}
+
+
