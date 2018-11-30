@@ -5,6 +5,7 @@ from django.utils import timezone
 from account.models import LoginUser
 from django import forms
 
+
 class GoodsReleased(models.Model):
     saler =  models.ForeignKey(LoginUser,related_name = "goodsreleased")
     buyer = models.CharField(max_length = 100)  #记录买家
@@ -12,7 +13,9 @@ class GoodsReleased(models.Model):
     photo = models.ImageField(blank = False,upload_to = '.')
     photo2 = models.ImageField(blank = True,upload_to = '.')
     detail = models.TextField()                 # datail详细描述产品的各项参数，由卖家随意编写
+
     price = models.CharField(max_length = 100)
+
     status = models.IntegerField(default = 1)   #status表示物品的交易状态，1表示可交易，0表示交易中,2表示交易完成
     created = models.DateTimeField(default = timezone.now)  #发布信息时间
     updated = models.DateTimeField(auto_now=True)           #更新信息时间
@@ -24,8 +27,10 @@ class GoodsReleased(models.Model):
     def __str__(self):
         return self.title
 
+
 class GoodsReleaseForm(forms.ModelForm):
     class Meta:
         model = GoodsReleased
         fields = ("title","detail","price","photo")
+
 

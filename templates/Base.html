@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+	<!--Bootstrap-->
+  <link href="/static/default/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+  <link rel="stylesheet" type="text/css" href="/static/default/bootstrap/css/index.css">
+  <link rel="stylesheet" href="/static/default/bootstrap/css/bootstrap-theme.min.css">
+  <script src="/static/default/js/jquery-1.12.4.min.js" ></script>
+  <script src="/static/default/bootstrap/js/bootstrap-3.3.7.min.js" ></script>
+{% block meta %}{% endblock %}
+<title>上海交大宿舍二手交易网站 {% block title %}{% endblock %}</title>
+</head>
+<body>
+
+<!--Navagator bar-->
+{% block nav %}
+<div class="navbar-fixed-top top" role="navigation" id="menu-nav">
+<div class="container">
+    <div class="navbar-header">
+        <button type="button" class="navbar-toggle" data-toggle="collapse"
+            data-target=".navbar-collapse">
+            <span class="sr-only"></span> <span class="icon-bar"> </span> <span
+                class="icon-bar"></span> <span class="icon-bar"></span>
+        </button>
+        <a class="navbar-brand" href="/"><b>SJTU二手交易</b></a>
+    </div>
+    <div class="navbar-collapse collapse">
+        <ul class="nav navbar-nav">
+            <li class="dropdown">
+                <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">买家入口<span class="caret"></span></a>
+                <ul class="dropdown-menu" role="menu">
+                    <li><a href="/goodsIssue/market/">浏览市场</a></li>
+                    <li><a href="/trade/buyHistory">购物记录</a></li>    
+                </ul>
+            </li>
+            <li class="dropdown">
+                <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">卖家入口<span class="caret"></span></a>
+                <ul class="dropdown-menu" role="menu">
+                    <li><a href="/trade/saleHistory">交易管理</a></li>             
+                    <li><a href="/goodsIssue/release/">上架新品</a></li>
+                </ul>
+        </ul>
+
+        {% if request.session.islogin %}
+            <form class="nav-right" action="/account/logout">
+                <span style="color:#fff;margin-right:25px">您好：{{ request.session.user_info.name }}</span>
+                <button class="btn pad2 btn-cricle1 btn_login"sytle = "position: -absolute;">退出</button>
+                </form>
+        {% else %}
+                <div class="nav-right">
+                    <span style="color:#fff ;position:absolute">游客您好</span>
+                </div>
+                <div class="login-pad">
+                    <button class="btn pad1 btn-cricle btn_login" sytle = "position: -absolute;"data-toggle="modal" data-target="#loginModal">登录</button>
+                    <a href="/account/register/" class="btn pad1 btn-cricle btn_login" style="margin-right:12px">注册</a>
+            </div>        
+        {% endif %}
+    </div>
+    </div>
+</div>
+
+<!-- 登录模态框 -->
+            <div class="modal fade bs-example-modal-sm" id="loginModal" tabindex="-1" role="dialog" aria-labelledby="mySmallModalLabel">
+                <div class="modal-dialog modal-sm" role="document">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <div class="modal-title" id="myModalLabel" style="text-align: center;">登录</div>
+                        </div>
+                        <div class="modal-body">
+                            <form class="form-horizontal" style="padding: 12px;" method="post" action="/account/login/">
+                                <div class="form-group">
+                                    <input type="text" name="email"  class="form-control" placeholder="账户名">         
+                                </div>
+                                <div class="form-group">            
+                                    <input type="password" name="password" placeholder="密码" class="form-control">
+                                </div>
+                                <div class="modal-footer" style="text-align: center;">
+                                    <button type="submit" class="btn btn-primary" style="width: 100%">Login</button>
+                                </div>
+                            </form>
+                        </div>
+                        
+                    </div>
+                </div>
+            </div>
+{% endblock %}
+
+{% block body %}
+        <h1>index</h1>
+        {{ now }}
+{% endblock %}
+{% block foot %}
+<footer id="footer" >
+    <div style="text-align:center">2018 &copy;Powered By Django</div>
+	<div style="text-align:center">
+	Email:juewangyashuabing@sjtu.edu.cn
+    </div>
+</footer>
+{% endblock %}
+
+</body>
+</html>

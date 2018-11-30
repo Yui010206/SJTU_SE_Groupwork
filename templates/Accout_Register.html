@@ -1,0 +1,65 @@
+{% extends "Base.html"%}
+
+{% block body %}
+  <div class="wrap" style="overflow:scroll">
+    <div class="container">
+        <h1>注册</h1>
+        <form method="post" action="/account/register">
+          <div style="text-align:center ;color:#fff">
+          <p>邮箱:{{ regform.email }}
+          {% for i in errorem%}{{i}}{% endfor %}
+          </p>
+      
+          <p>密码:{{ regform.password }}
+            {% for i in errorpwd%}{{i}}{% endfor %}
+          </P>
+          
+          <p>确认密码:{{ regform.password2 }}
+          {% for i in errorpwd2%}{{i}}{% endfor %}
+          </P>
+          
+          <p>用户名:{{ regform.name }}
+          {% for i in errornm%}{{i}}{% endfor %} 
+          </P>
+          
+          <p>手机:{{ regform.phone }}
+          {% for i in errortel%}{{i}}{% endfor %}
+          </P>
+          
+          <p>学号:{{ regform.studentid }}
+          {% for i in errorid%}{{i}}{% endfor %}
+          </P>
+          <p>住址:{{ regform.address }}
+            {% for i in errorad%}{{i}}{% endfor %}
+          </P>
+            <p>&nbsp&nbsp
+            <input type="submit" value="Sign up"/>
+            </p>
+            </div>
+            <p class="change_link" align="center">
+                <span class="text">已经注册了?</span>
+                <a href="/" class="to_login"> 去登录</a>
+            </p>
+        </form>
+    </div>
+    <div style="text-align:center;color:#dbdbdb">2018 &copy;Powered By Django</div>
+    <div style="text-align:center;color:#dbdbdb">
+  Email:juewangyashuabing@sjtu.edu.cn
+    </div>
+    <ul>
+        <li></li>
+        <li></li>
+        <li></li>
+        <li></li>
+        <li></li>
+        <li></li>
+        <li></li>
+        <li></li>
+        <li></li>
+        <li></li>
+    </ul>
+</div>
+
+{% endblock %}
+
+
