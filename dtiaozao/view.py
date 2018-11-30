@@ -1,14 +1,10 @@
 #encoding: utf-8
-
 from django.shortcuts import render_to_response,render
-
 from account.models import LoginUser
 from goodsIssue.models import GoodsReleased
 from dtiaozao import function as fun
 
-
 #新品上架展示
-
 def index(request):
     allgoods = GoodsReleased.objects.all()
     goodsorder = []
@@ -24,4 +20,3 @@ def index(request):
             i += 1
         except:break
     return render(request,'Base_Index.html',{"showgoods":showgoods},)
-
