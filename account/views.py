@@ -1,7 +1,6 @@
 #encoding: utf-8
 from django.shortcuts import render
 from django.http import HttpResponseRedirect
-
 from models import LoginUser,LoginForm
 from dtiaozao import function as fun
 
@@ -11,7 +10,6 @@ def login(request):
     if request.method == 'GET':
        return render(request,"Account_Login.html")
     else:
-
         cd = request.POST
         encriped=fun.mk_md5(cd.get("password"))
         email = cd.get("email")
@@ -35,7 +33,6 @@ def login(request):
             msg = '登陆成功'
 
         return render(request,"error_msg.html",locals())
-
 
 #登出
 def logout(request):
@@ -151,3 +148,6 @@ def register(request):
             else :
                 msg = '注册失败，请重新注册！'
                 return render(request,"error_msg.html",locals())
+
+
+
