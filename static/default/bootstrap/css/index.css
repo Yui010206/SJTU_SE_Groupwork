@@ -75,7 +75,8 @@
 }
 
 .item_article {
-	min-height: 120px;
+	min-height: 100px;
+    margin-top:0%;
 	display: flex;
 	flex-direction: row;
 	align-items: center;
@@ -108,8 +109,8 @@
 }
 
 .iv_article {
-	width: 88px;
-	height: 88px;
+	width: 160px;
+	height: 90px;
 	margin: auto;
 }
 
@@ -226,7 +227,7 @@ background-image: -o-linear-gradient(top,#fff 0,#e0e0e0 100%);
 
 background-image: -webkit-gradient(linear,left top,left bottom,from(#fff),to(#e0e0e0));
 
-background-image: linear-gradient(to bottom,#ddf9f9 0,#46bdbe 100%);
+background-image: linear-gradient(to bottom,#e0e0e0 0,#a9a9a9 100%);
 
 filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#ffffffff', endColorstr='#ffe0e0e0', GradientType=0);
 
@@ -236,7 +237,7 @@ background-repeat: repeat-x;
 
 border-color: #dbdbdb;
 
-border-color: #589de0;
+border-color: #a9a9a9;
 }
 
 .pad2{
@@ -248,7 +249,7 @@ background-image: -o-linear-gradient(top,#fff 0,#e0e0e0 100%);
 
 background-image: -webkit-gradient(linear,left top,left bottom,from(#fff),to(#e0e0e0));
 
-background-image: linear-gradient(to bottom,#ddf9f9 0,#46bdbe 100%);
+background-image: linear-gradient(to bottom,#e0e0e0 0,#a9a9a9 100%);
 
 filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#ffffffff', endColorstr='#ffe0e0e0', GradientType=0);
 
@@ -257,7 +258,7 @@ filter: progid:DXImageTransform.Microsoft.gradient(enabled=false);
 background-repeat: repeat-x;
 border-color: #dbdbdb;
 
-border-color: #589de0;
+border-color: #a9a9a9;
 }
    
 .btn-cricle1 { 
@@ -313,6 +314,20 @@ border-color: #589de0;
             -webkit-transition: all 0s ease-in 0.1ms;
             -moz-transition: all 0s ease-in 0.1ms;
             transition: all 0s ease-in 0.1ms;
+        }
+        .container p1 {
+            width: 450px;
+            display: block;
+            height: 50px;
+            border: 0;
+            outline: 0;
+            padding: 14px 5px;
+            line-height: 20px;
+            margin: 14px auto;
+            background-color: #FFFFFF;
+            font-size: 18px;
+            color: #666666;
+            
         }
         .container input[type="text"] , .container input[type="password"] ,.container input[type="number"],.container input[type="email"]{
             background-color: #FFFFFF;
@@ -500,5 +515,25 @@ border-color: #589de0;
                 transform: translateY(-500)
             }
 }
+
+.goods-dialog{
+    width: 600px;
+    margin:100px auto;
+}
+.goods-content{
+    position:relative;
+    background-color:#fff;
+    background-clip: padding-box;
+    border-radius:10px 
+}
+.goods-header{
+    padding: 20px;
+    border-bottom:1px solid #e5e5e5;
+}
+.goods-body{
+    padding: 20px;
+    position: relative;
+}
+
 
 
