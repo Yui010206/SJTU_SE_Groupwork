@@ -24,7 +24,7 @@ DEBUG = True
 
 TEMPLATE_DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ['*']
 
 TEMPLATE_DIRS = (
     os.path.join(BASE_DIR, 'templates/').replace('\\', '/'),
@@ -71,9 +71,9 @@ WSGI_APPLICATION = 'dtiaozao.wsgi.application'
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.mysql',
-        'NAME': '',
+        'NAME': 'ershou',
         'USER': 'root',
-        'PASSWORD': '',
+        'PASSWORD': 'market!11520',
     }
 }
 
