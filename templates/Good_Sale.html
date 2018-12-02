@@ -1,4 +1,4 @@
-<!--交易管理-->
+﻿<!--交易管理-->
 {% extends "Base.html" %}
 
 {% block body %}
@@ -19,7 +19,7 @@
             </div>
             <!-- 右侧图片，信息 -->
             <div class="col-xs-3 div_right_info">
-                <a href="/trade/detail/{{item.id}}"><img class="iv_article img-rounded" src="{{item.photo.url}}" ></a>
+                <a href="/trade/detail/{{item.id}}"><img class="iv_article img-rounded" src="../{{item.photo.url}}" ></a>
             </div>
         </div>
     </div>
@@ -54,7 +54,7 @@
             </div>
             <!-- 右侧图片，信息 -->
             <div class="col-xs-3 div_right_info">
-                <a href="/trade/detail/{{item.id}}"><img class="iv_article img-rounded" src="{{item.photo.url}}" ></a>
+                <a href="/trade/detail/{{item.id}}"><img class="iv_article img-rounded" src="../{{item.photo.url}}" ></a>
             </div>
         </div>
     </div>
@@ -75,7 +75,7 @@
             </div>
             <!-- 右侧图片，信息 -->
             <div class="col-xs-3 div_right_info">
-                <a href="/trade/detail/{{item.id}}"><img class="iv_article img-rounded" src="{{item.photo.url}}" ></a>
+                <a href="/trade/detail/{{item.id}}"><img class="iv_article img-rounded" src="../{{item.photo.url}}" ></a>
             </div>
         </div>
     </div>

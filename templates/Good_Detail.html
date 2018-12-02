@@ -1,11 +1,11 @@
-{% extends "Base.html" %}
+﻿{% extends "Base.html" %}
 
 {% block body %}
 <div class="wrap" style="overflow:scroll">
     <div class="container">
         <h1>商品详情</h1>
         <form method = "post" action = "/trade/goodsPurchase">
-            <div align="center"><img src="{{good.photo.url}}" width = 300 border="2"></div>
+            <div align="center"><img src="/{{good.photo.url}}" width = 300 border="2"></div>
             <h2>&nbsp&nbsp</h2>
             <center><p1>商品名：{{good.title}}</p1></center>
             <center><p1>¥{{good.price}}</p1></center>

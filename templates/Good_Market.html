@@ -1,4 +1,4 @@
-{%extends "Base.html"%}
+﻿{%extends "Base.html"%}
 {% block meta %}
     <link rel="stylesheet" type="text/css" href="/static/default/css/public.css">
     <link rel="stylesheet" type="text/css" href="/static/default/css/proList.css">
@@ -38,7 +38,7 @@
 			<li>
 				<a href="{{item.id}}">
 					<dl>
-						<dt><img src="{{item.photo.url}}"></dt>
+						<dt><img src="../{{item.photo.url}}"></dt>
 						<dd>{{item.title}}</dd>
 						<dd>￥{{item.price }}</dd>
 					</dl>
