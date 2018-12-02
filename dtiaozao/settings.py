@@ -8,6 +8,8 @@ For the full list of settings and their values, see
 https://docs.djangoproject.com/en/1.7/ref/settings/
 """
 
+
+# _*_ coding: utf-8 _*_
 # Build paths inside the project like this: os.path.join(BASE_DIR, ...)
 import os
 BASE_DIR = os.path.dirname(os.path.dirname(__file__))
@@ -23,7 +25,6 @@ SECRET_KEY = '625z!k!bklq1u1m5=eq6bdr_bzkuuww$v_0_od)ua@tbktq3(y'
 DEBUG = True
 
 TEMPLATE_DEBUG = True
-
 
 ALLOWED_HOSTS = ['*']
 
@@ -74,9 +75,7 @@ DATABASES = {
         'ENGINE': 'django.db.backends.mysql',
         'NAME': 'ershou',
         'USER': 'root',
-
         'PASSWORD': '123456',
-
     }
 }
 
@@ -85,7 +84,6 @@ DATABASES = {
 
 # LANGUAGE_CODE = 'en-us'
 LANGUAGE_CODE = 'zh-hans'
-
 # TIME_ZONE = 'UTC'
 TIME_ZONE = 'Asia/Shanghai'
 
@@ -99,12 +97,11 @@ USE_TZ = True
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/1.7/howto/static-files/
 
-STATIC_URL = '/static/'
+STATIC_URL = 'static/'
+STATIC_ROOT = os.path.join(os.path.dirname(__file__),'static')
+STATICFILES_DIRS = [
+    "/home/ubuntu/ErshouTrade_SJTU/static/"
+]
 
-STATICFILES_DIRS = (
-    os.path.join(BASE_DIR, "static"),
-
-)
-
-MEDIA_ROOT = os.path.join(BASE_DIR, 'static/media').replace('\\', '/') 
-MEDIA_URL = '/static/media/'
+MEDIA_ROOT = os.path.join(BASE_DIR, 'static/media/').replace('\\', '/') 
+MEDIA_URL = 'static/media/'
