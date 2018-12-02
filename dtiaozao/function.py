@@ -1,3 +1,4 @@
+
 #encoding: utf-8
 
 def mk_md5(s):
