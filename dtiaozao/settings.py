@@ -24,6 +24,7 @@ DEBUG = True
 
 TEMPLATE_DEBUG = True
 
+
 ALLOWED_HOSTS = ['*']
 
 TEMPLATE_DIRS = (
@@ -73,7 +74,9 @@ DATABASES = {
         'ENGINE': 'django.db.backends.mysql',
         'NAME': 'ershou',
         'USER': 'root',
-        'PASSWORD': 'market!11520',
+
+        'PASSWORD': '123456',
+
     }
 }
 
